@@ -27,10 +27,10 @@ You can also only add it to the controllers you think may be causing some issues
 
 ```ruby
 before_action :resource_monitor_app
-afer_action :resource_monitor_app
+after_action :resource_monitor_app
 
 def resource_monitor_app
-  ResourceMonitor.benchmark(controller)
+  ResourceMonitor.benchmark(self)
 end
 ```
 
@@ -42,11 +42,11 @@ If you want to disable this, you can easily comment out the contents of resource
 
 ```ruby
 before_action :resource_monitor_app
-afer_action :resource_monitor_app
+after_action :resource_monitor_app
 
 def resource_monitor_app
   if ENV['MONITORING_ENABLED']
-    ResourceMonitor.benchmark(controller)
+    ResourceMonitor.benchmark(self)
   end
 end
 ```

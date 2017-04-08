@@ -18,9 +18,9 @@
           var last_executed_action = json['last_executed_action']
 
           var execution_details_td = jQuery('<td/>', {
-            text: "Line: " + last_executed_line + "\n" +
-                  "Controller: " +last_executed_controller + "\n" +
-                  "Action: "  + last_executed_action + "\n"
+            text: "Controller: " +last_executed_controller + "\n" +
+                  "Action: "  + last_executed_action + "\n" +
+                  "Line: " + last_executed_line + "\n"
           });
 
           var ram_usage_td = jQuery('<td/>', {

@@ -11,7 +11,7 @@ namespace :resource_monitor do
     if defined?(Rails)
       path = Gem.loaded_specs['resource_monitor'].full_gem_path
       puts "Copying from #{path}/app/ to #{Rails.root.to_s}/app/"
-      FileUtils.cp("#{path}/app/", "#{Rails.root.to_s}/app/")
+      FileUtils.cp_r "#{path}/app/.", "#{Rails.root.to_s}/app/"
       puts "IMPORTANT: Remember to add the following route to your config/routes.rb"
       puts "get 'resources' => 'resource#index'"
     else
@@ -25,7 +25,7 @@ namespace :resource_monitor do
       records = Dir.glob("#{path}app/**/**").select { |f| File.file?(f) }
       records.each do |item|
         puts "Removing #{Rails.root.to_s}#{item.split(path)[1]}"
-        FileUtils.rm("#{Rails.root.to_s}#{item.split(path)[1]}")
+        FileUtils.rm "#{Rails.root.to_s}#{item.split(path)[1]}"
       end
       puts "IMPORTANT: Remember to remove the following route from your config/routes.rb"
       puts "get 'resources' => 'resource#index'"

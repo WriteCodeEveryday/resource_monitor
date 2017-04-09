@@ -1,12 +1,12 @@
 class ResourceChannel < ApplicationCable::Channel
   def subscribed
     stream_from "resources"
-    ResourceMonitor.benchmark({controller_name: 'actioncable', controller_action: 'subscribed'})
+    ResourceMonitor.benchmark()
   end
 
   def receive(data)
     if data['type'] == "request"
-      ResourceMonitor.benchmark({controller_name: 'actioncable', controller_action: 'receive'})
+      ResourceMonitor.benchmark()
     end
   end
 end

@@ -15,7 +15,7 @@ module ResourceMonitor
       last_executed_action: controller&.action_name || 'NoAction'
     }
 
-    ActionCable.server.broadcast 'resources', data
+    ActionCable.server.broadcast 'resources', data rescue puts "ActionCable had an error broadcasting: #{data}"
     return data
   end
 end

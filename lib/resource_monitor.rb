@@ -6,12 +6,12 @@ module ResourceMonitor
     # Recover the process id and memory usage in KB (http://stackoverflow.com/questions/7220896/get-current-ruby-process-memory-usage)
     pid, size, cpu_per, mem_per = `ps ax -o pid,rss,%cpu,%mem | grep -E "^[[:space:]]*#{$$}"`.strip.split.map(&:to_i)
 
-    if defined?(Rails)
-      last_executed_controller = controller&.controller_name&.presence  || controller&['controller_name']&.presence  || 'NoController'
-      last_executed_action = controller&.action_name&.presence || controller&['action_name']&.presence || 'NoAction'
+    if controller
+      last_executed_controller = controller.controller_name  || 'NoController'
+      last_executed_action = controller.action_name || 'NoAction'
     else
-      last_executed_controller = controller&.controller_name ||  'NoController'
-      last_executed_action = controller&.action_name || 'NoAction'
+      last_executed_controller = 'NoController'
+      last_executed_action = 'NoAction'
     end
 
     data = {

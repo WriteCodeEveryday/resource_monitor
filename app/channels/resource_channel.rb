@@ -3,10 +3,4 @@ class ResourceChannel < ApplicationCable::Channel
     stream_from "resources"
     ResourceMonitor.benchmark()
   end
-
-  def receive(data)
-    if data['type'] == "request"
-      ResourceMonitor.benchmark()
-    end
-  end
 end

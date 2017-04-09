@@ -12,9 +12,10 @@ namespace :resource_monitor do
       path = Gem.loaded_specs['resource_monitor'].full_gem_path
       records = Dir.glob("#{path}/app/**/**").select { |f| File.file?(f) }
       records.each do |item|
-        puts item.split(path)[1]
+        puts "Copying to #{Rails.root.to_s}#{item.split(path)[1]}"
+        FileUtils.cp(path, "#{Rails.root.to_s}#{item.split(path)[1]}")
       end
-      puts "Remember to add the following route to your config/routes.rb"
+      puts "IMPORTANT: Remember to add the following route to your config/routes.rb"
       puts "get 'resources' => 'resource#index'"
     else
       puts "This installer should be run inside a Rails project."
@@ -26,9 +27,10 @@ namespace :resource_monitor do
       path = Gem.loaded_specs['resource_monitor'].full_gem_path
       records = Dir.glob("#{path}app/**/**").select { |f| File.file?(f) }
       records.each do |item|
-        puts item.split(path)[1]
+        puts "Removing #{Rails.root.to_s}#{item.split(path)[1]}"
+        FileUtils.rm("#{Rails.root.to_s}#{item.split(path)[1]}")
       end
-      puts "Remember to remove the following route from your config/routes.rb"
+      puts "IMPORTANT: Remember to remove the following route from your config/routes.rb"
       puts "get 'resources' => 'resource#index'"
     else
       puts "This uninstaller should be run inside a Rails project."

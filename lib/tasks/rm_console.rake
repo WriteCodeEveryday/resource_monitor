@@ -9,8 +9,11 @@ namespace :resource_monitor do
 
   task :install_dashboard do
     if defined?(Rails)
-      records = Dir.glob("app/**/**").select { |f| File.file?(f) }
-      puts records
+      path = Gem.loaded_specs['resource_monitor'].full_gem_path
+      records = Dir.glob("#{path}/app/**/**").select { |f| File.file?(f) }
+      records.each do |item|
+        puts item.split(path)[1]
+      end
       puts "Remember to add the following route to your config/routes.rb"
       puts "get 'resources' => 'resource#index'"
     else
@@ -20,8 +23,11 @@ namespace :resource_monitor do
 
   task :uninstall_dashboard do
     if defined?(Rails)
-      records = Dir.glob("app/**/**").select { |f| File.file?(f) }
-      puts records
+      path = Gem.loaded_specs['resource_monitor'].full_gem_path
+      records = Dir.glob("#{path}app/**/**").select { |f| File.file?(f) }
+      records.each do |item|
+        puts item.split(path)[1]
+      end
       puts "Remember to remove the following route from your config/routes.rb"
       puts "get 'resources' => 'resource#index'"
     else

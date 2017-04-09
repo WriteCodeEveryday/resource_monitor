@@ -10,11 +10,7 @@ namespace :resource_monitor do
   task :install_dashboard do
     if defined?(Rails)
       path = Gem.loaded_specs['resource_monitor'].full_gem_path
-      records = Dir.glob("#{path}/app/**/**").select { |f| File.file?(f) }
-      records.each do |item|
-        puts "Copying to #{Rails.root.to_s}#{item.split(path)[1]}"
-        FileUtils.cp(path, "#{Rails.root.to_s}#{item.split(path)[1]}")
-      end
+      FileUtils.cp("#{path}/app", "#{Rails.root.to_s}/app")
       puts "IMPORTANT: Remember to add the following route to your config/routes.rb"
       puts "get 'resources' => 'resource#index'"
     else

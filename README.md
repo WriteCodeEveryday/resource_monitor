@@ -22,6 +22,10 @@ And then execute:
 
     $ bundle install
 
+This following line will add a set of views/controllers/and channels into your app.
+
+    $ rake resource_monitor:setup
+
 And then add the following to the top of your application.rb file
 You can also only add it to the controllers you think may be causing some issues.
 
@@ -35,6 +39,16 @@ end
 ```
 
 ## Usage
+
+You can try out the gem by using
+
+    $ rake resource_monitor:console
+
+Once inside irb, you can use the following
+
+```ruby
+  ResourceMonitor.benchmark(self)
+```
 
 Install, deploy and browse to /resources/.
 

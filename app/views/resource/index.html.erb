@@ -17,10 +17,18 @@
           var last_executed_controller = json['last_executed_controller']
           var last_executed_action = json['last_executed_action']
 
+
           var execution_details_td = jQuery('<td/>', {
-            text: "Controller: " +last_executed_controller + "<br \\>" +
-                  "Action: "  + last_executed_action
+            text: ""
           });
+
+          var controller_details =  jQuery('<p>',{
+            text: "Controller: " +last_executed_controller
+          })
+
+          var action_details = jQuery('<p>',{
+            text: "Action: "  + last_executed_action
+          })
 
           var ram_usage_td = jQuery('<td/>', {
             text: ram_usage + " MB"
@@ -44,6 +52,8 @@
           cpu_percentage_td.appendTo(main_tr)
           ram_percentage_td.appendTo(main_tr)
           ram_usage_td.appendTo(main_tr)
+          controller_details.appendTo(execution_details_td)
+          action_details.appendTo(execution_details_td)
           execution_details_td.appendTo(main_tr)
           main_tr.prependTo(table_body)
         }

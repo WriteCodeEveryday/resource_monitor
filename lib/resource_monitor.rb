@@ -13,13 +13,12 @@ module ResourceMonitor
       last_executed_controller = controller&.controller_name ||  'NoController'
       last_executed_action = controller&.action_name || 'NoAction'
     end
-    
+
     data = {
       process_id: pid,
       cpu_percentage: cpu_per,
       ram_percentage: mem_per,
       ram_usage: (size / 1024).to_i,
-      last_executed_line: caller[2]|| "NoCallerData", # Skip two so this is not triggered on Application.before_action
       last_executed_controller: last_executed_controller,
       last_executed_action: last_executed_action
     }

@@ -14,14 +14,12 @@
           var cpu_percentage = json['cpu_percentage']
           var ram_percentage = json['ram_percentage']
           var ram_usage = json['ram_usage']
-          var last_executed_line = json['last_executed_line']
           var last_executed_controller = json['last_executed_controller']
           var last_executed_action = json['last_executed_action']
 
           var execution_details_td = jQuery('<td/>', {
-            text: "Controller: " +last_executed_controller + "<br \>" +
-                  "Action: "  + last_executed_action + "<br \>" +
-                  "Line: " + last_executed_line + "<br \>"
+            text: "Controller: " +last_executed_controller + "<br \\>" +
+                  "Action: "  + last_executed_action
           });
 
           var ram_usage_td = jQuery('<td/>', {

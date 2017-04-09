@@ -7,8 +7,8 @@ module ResourceMonitor
     pid, size, cpu_per, mem_per = `ps ax -o pid,rss,%cpu,%mem | grep -E "^[[:space:]]*#{$$}"`.strip.split.map(&:to_i)
 
     if defined?(Rails)
-      last_executed_controller = controller&.controller_name.presence  || controller&['controller_name'].presence  || 'NoController'
-      last_executed_action = controller&.action_name.presence || controller&['action_name'].presence || 'NoAction'
+      last_executed_controller = controller&.controller_name&.presence  || controller&['controller_name']&.presence  || 'NoController'
+      last_executed_action = controller&.action_name&.presence || controller&['action_name']&.presence || 'NoAction'
     else
       last_executed_controller = controller&.controller_name ||  'NoController'
       last_executed_action = controller&.action_name || 'NoAction'

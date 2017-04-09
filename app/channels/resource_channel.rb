@@ -1,4 +1,4 @@
-class ResourceChannel < Channel
+class ResourceChannel < ApplicationCable::Channel
   def subscribed
     stream_from "resources"
     ResourceMonitor.benchmark({controller_name: 'actioncable', controller_action: 'subscribed'})

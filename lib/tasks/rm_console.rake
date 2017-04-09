@@ -25,9 +25,7 @@ namespace :resource_monitor do
   task :uninstall_dashboard do
     if defined?(Rails)
       path = Gem.loaded_specs['resource_monitor'].full_gem_path
-      records = Dir.glob("#{path}app/**/**").select { |f| File.file?(f) }
-      puts "These are the files we think should be removed"
-      puts records
+      records = Dir.glob("#{path}/app/**/**").select { |f| File.file?(f) }
       records.each do |item|
         puts "Removing #{Rails.root.to_s}#{item.split(path)[1]}"
         FileUtils.rm "#{Rails.root.to_s}#{item.split(path)[1]}"

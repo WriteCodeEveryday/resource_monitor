@@ -1,6 +1,5 @@
 require "resource_monitor/engine"
 require "resource_monitor/version"
-require "resource_monitor/railtie" if defined?(Rails)
 
 module ResourceMonitor
   def self.benchmark(controller=nil)

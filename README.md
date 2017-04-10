@@ -25,15 +25,21 @@ And then execute:
     $ bundle install
 
 Add the following to the top of your application.rb file
-You can also only add it to the controllers you think may be causing some issues.
+You may also add it to the controllers you think may be causing some issues.
 
 ```ruby
-before_action :resource_monitor_app
-after_action :resource_monitor_app
+# This should be a single line
+around_action def benchmark; ResourceMonitor.benchmark(self); yield; ResourceMonitor.benchmark(self); end
+```
 
-def resource_monitor_app
-  ResourceMonitor.benchmark(self)
-end
+You can also utilize standard callbacks and add only, except conditions
+
+```ruby
+# This should be a single line (enables resource monitoring in the "index")
+around_action def benchmark; ResourceMonitor.benchmark(self); yield; ResourceMonitor.benchmark(self); end, only: :index
+
+# This should be a single line (enables resource monitoring for everything except 'index')
+around_action def benchmark; ResourceMonitor.benchmark(self); yield; ResourceMonitor.benchmark(self); end, except: :index
 ```
 ## Usage
 

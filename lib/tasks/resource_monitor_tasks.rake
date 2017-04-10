@@ -11,9 +11,8 @@ namespace :resource_monitor do
   # Works correctly.
   task :install_dashboard do
     if defined?(Rails)
-      path = Gem.loaded_specs['resource_monitor'].full_gem_path
-      puts "Copying from #{path}/app/ to #{Rails.root.to_s}/app/"
-      FileUtils.cp_r "#{path}/app/.", "#{Rails.root.to_s}/app/"
+      puts "Add the following to your routes/config.rb\n"
+      puts "mount ResourceMonitor::Engine => '/resources'"
     else
       puts "This installer should be run inside a Rails project."
     end
@@ -22,12 +21,8 @@ namespace :resource_monitor do
   # Does nothing at all.
   task :uninstall_dashboard do
     if defined?(Rails)
-      path = Gem.loaded_specs['resource_monitor'].full_gem_path
-      records = Dir.glob("#{path}/app/**/**").select { |f| File.file?(f) }
-      records.each do |item|
-        puts "Removing #{Rails.root.to_s}#{item.split(path)[1]}"
-        FileUtils.rm "#{Rails.root.to_s}#{item.split(path)[1]}"
-      end
+      puts "Remove the following to your routes/config.rb\n"
+      puts "mount ResourceMonitor::Engine => '/resources'"
     else
       puts "This uninstaller should be run inside a Rails project."
     end

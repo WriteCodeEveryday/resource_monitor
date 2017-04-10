@@ -19,6 +19,7 @@ APP_RAKEFILE = File.expand_path("../test/dummy/Rakefile", __FILE__)
 
 
 load 'rails/tasks/statistics.rake'
+load 'lib/tasks/resource_monitor_tasks.rake'
 
 
 

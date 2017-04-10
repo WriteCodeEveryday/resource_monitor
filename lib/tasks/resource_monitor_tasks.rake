@@ -1,11 +1,12 @@
 namespace :resource_monitor do
   # Works perfectly as a quick test environment.
   task :console do
-    require 'irb'
-    require 'irb/completion'
-    require 'resource_monitor' # You know what to do.
-    ARGV.clear
-    IRB.start
+    # require 'irb'
+    # require 'irb/completion'
+    # require 'resource_monitor' # You know what to do.
+    # ARGV.clear
+    # IRB.start
+    puts "This functionality is broken in engine mode. Research further."
   end
 
   # Works correctly.

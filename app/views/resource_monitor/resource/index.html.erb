@@ -7,7 +7,7 @@
     <script>
       App.cable = ActionCable.createConsumer("//<%= request.host_with_port %>/cable");
       //App.cable = ActionCable.createConsumer("ws://localhost:3000/websocket");
-      App.data = App.cable.subscriptions.create({ channel: "ResourceChannel" }, {
+      App.data = App.cable.subscriptions.create({ channel: "ResourceMonitor::ResourceChannel" }, {
         received: function(data) {
           var json = JSON.parse(data)
           var process_id = json['process_id']

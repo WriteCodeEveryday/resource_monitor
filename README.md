@@ -8,7 +8,9 @@ Creates a simple page under /resources/ that is updated with CPU/RAM usage in re
 
 Although not a major performance hog, this should only be run in production when there is evidence of resource overuse, look under the Usage section for instructions for disabling the gem.
 
-Current Project Status: Usable
+Latest Version: 0.1.2
+Last Feature Set: Engine created, no need to manually install dashboard.
+Recommended Installation: Uninstall dashboard, then remove Gemfile.lock and rebundle.
 
 ## Installation
 
@@ -22,11 +24,7 @@ And then execute:
 
     $ bundle install
 
-This following line will add a set of views/controllers/and channels into your app.
-
-    $ rake resource_monitor:install_dashboard
-
-And then add the following to the top of your application.rb file
+Add the following to the top of your application.rb file
 You can also only add it to the controllers you think may be causing some issues.
 
 ```ruby
@@ -37,15 +35,6 @@ def resource_monitor_app
   ResourceMonitor.benchmark(self)
 end
 ```
-
-## Uninstall
-
-If you added the dashboard to your project, you can remove it using this.
-
-    $ rake resource_monitor:uninstall_dashboard
-
-This will leave behind a "resource" folder in your views but it's less risky than removing folders from your views folder.
-
 ## Usage
 
 You can try out the gem by using
@@ -58,7 +47,7 @@ Once inside irb, you can use the following
   ResourceMonitor.benchmark(self)
 ```
 
-Install the dashboard, deploy and browse to /resources/.
+Bundle install and browse to /resources/.
 
 If you want to disable this, you can easily comment out the contents of resource_monitor_app or use an ENV variable such as below.
 

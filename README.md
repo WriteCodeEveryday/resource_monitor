@@ -8,9 +8,8 @@ Creates a simple page under /resources/ that is updated with CPU/RAM usage in re
 
 Although not a major performance hog, this should only be run in production when there is evidence of resource overuse, look under the Usage section for instructions for disabling the gem.
 
-Latest Version: 0.1.2
-Last Feature Set: Engine created, no need to manually install dashboard.
-Recommended Installation: Uninstall dashboard, then remove Gemfile.lock and rebundle.
+Latest Version: 1.0
+Last Feature Set: Complete Engine and Simplified Installation. Support for ActionController and ActiveRecord benchmarks.
 
 ## Installation
 
@@ -24,7 +23,7 @@ And then execute:
 
     $ bundle install
 
-Add the following to the top of your application.rb file
+Add the following to the top of your application_controller.rb file
 You may also add it to the controllers you think may be causing some issues.
 
 ```ruby
@@ -58,19 +57,22 @@ Bundle install and browse to /resources/.
 If you want to disable this, you can easily comment out the contents of resource_monitor_app or use an ENV variable such as below.
 
 ```ruby
-before_action :resource_monitor_app
-after_action :resource_monitor_app
+around_action :resource_monitor_app
 
 def resource_monitor_app
   if ENV['MONITORING_ENABLED']
     ResourceMonitor.benchmark(self)
+    yield
+    ResourceMonitor.benchmark(self)
+  else
+    yield
   end
 end
 ```
 
 ## Development
 
-After checking out the repo, run `bin/setup` to install dependencies. You can also run `rake resource_monitor:console` for an interactive prompt that will allow you to experiment.
+After checking out the repo, run `bin/setup` to install dependencies.
 
 To install this gem onto your local machine, run `bundle exec rake install`. To release a new version, update the version number in `version.rb`, and then run `bundle exec rake release`, which will create a git tag for the version, push git commits and tags, and push the `.gem` file to [rubygems.org](https://rubygems.org).
 

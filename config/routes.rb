@@ -1,3 +1,5 @@
 ResourceMonitor::Engine.routes.draw do
-  mount ResourceMonitor::Engine => '/resources/'
+  namespace :resource_monitor do
+    get '/resources/' => 'resource#index'
+  end
 end

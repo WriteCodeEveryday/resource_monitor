@@ -7,9 +7,9 @@ module ResourceMonitor
     pid, size, cpu_per, mem_per = `ps ax -o pid,rss,%cpu,%mem | grep -E "^[[:space:]]*#{$$}"`.strip.split.map(&:to_i)
 
     if input
-      if input.kind_of?(ActionController)
+      if input.kind_of?(ActionController::Base)
         details = "Controller: #{input.controller_name}\nAction: #{input.action_name}"
-      elsif input.kind_of?(ActiveRecord)
+      elsif input.kind_of?(ActiveRecord::Base)
         details = "Model: #{input.model_name.human}"
       end
     else
